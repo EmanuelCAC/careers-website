@@ -11,27 +11,38 @@
       height: 360px;
       width: 100%;
       object-fit: cover;
+      margin-bottom: 16px;
     }
   </style>
   <title>Careers</title>
 </head>
 
 <body>
+  {% include 'nav.html' %}
+  <img class="img-fluid" id="banner" src="http://127.0.0.1:5000/static/banner.jpg">
   <div class="container">
     <h1 class="text-center mt-2 mb-4">Careers</h1>
-    <img class="img-fluid" id="banner" src="http://127.0.0.1:5000/static/banner.jpg">
-    <h2 class="text-center mt-2 mb-4">About</h2>
-    <p class="lead">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt cupiditate optio rerum necessitatibus nesciunt
-      voluptatum reiciendis accusantium ut obcaecati, doloremque velit molestiae vel unde harum repellat rem nostrum sed
-      eveniet!Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt cupiditate optio rerum necessitatibus
-      nesciunt
-      voluptatum reiciendis accusantium ut obcaecati, doloremque velit molestiae vel unde harum repellat rem nostrum sed
-      eveniet!Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt cupiditate optio rerum necessitatibus
-      nesciunt
-      voluptatum reiciendis accusantium ut obcaecati, doloremque velit molestiae vel unde harum repellat rem nostrum sed
-      eveniet!
-    </p>
+    <div class="row" style="margin-bottom: 16px;">
+      <div class="col-md-6">
+        <p class="lead">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt cupiditate optio rerum necessitatibus nesciunt
+          voluptatum reiciendis accusantium ut obcaecati, doloremque velit molestiae vel unde harum repellat rem nostrum
+          sed
+          eveniet!Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt cupiditate optio rerum necessitatibus
+          nesciunt
+          voluptatum reiciendis accusantium ut obcaecati, doloremque velit molestiae vel unde harum repellat rem nostrum
+          sed
+          eveniet!Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt cupiditate optio rerum necessitatibus
+          nesciunt
+          voluptatum reiciendis accusantium ut obcaecati, doloremque velit molestiae vel unde harum repellat rem nostrum
+          sed
+          eveniet!
+        </p>
+      </div>
+      <div class="d-none d-md-block col-6">
+        <img src="/static/people.jpg" style="height: 320px; border-radius: 4px;">
+      </div>
+    </div>
     <h2 class="text-center mt-2 mb-4">Open positions</h2>
     <div>
       {% for job in jobs %}
@@ -39,10 +50,11 @@
       {% endfor %}
     </div>
     <div class="text-center">
-      <button class="btn btn-primary btn-lg">Contact Us</button>
-      <p class="mt-4">Copyright 2024, Emanuel</p>
+      <a href="mailto:hello279@careers.com?subject=Question about Job Opening" class="btn btn-primary btn-lg">Contact
+        Us</a>
     </div>
   </div>
+  {% include 'footer.html' %}
 </body>
 
 </html>
