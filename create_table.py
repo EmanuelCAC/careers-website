@@ -10,9 +10,11 @@ cur = con.cursor()
 res = cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
 if res.fetchall() != []:
     cur.execute("DROP TABLE jobs")
+    cur.execute("DROP TABLE applications")
     print("Data dropped successfully")
 
-cur.execute("""CREATE TABLE jobs (
+cur.execute("""
+  CREATE TABLE jobs (
             id                INTEGER PRIMARY KEY AUTOINCREMENT,
             title             VARCHAR(250)  NOT NULL,
             location          VARCHAR(250)  NOT NULL,
@@ -20,8 +22,30 @@ cur.execute("""CREATE TABLE jobs (
             currency          VARCHAR(10),
             responsabilities  VARCHAR(2000),
             requirements      VARCHAR(2000)
-            )""")
-print("Table created successfully!")
+  )""")
+
+cur.execute("""
+  CREATE TABLE applications (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            job_id INT NOT NULL,
+            full_name VARCHAR(250) NOT NULL,
+            email VARCHAR(250) NOT NULL,
+            linkedin_url VARCHAR(500),
+            education VARCHAR(2000),
+            work_experience VARCHAR(2000),
+            resume_url VARCHAR(500),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )""")
+print("Tables created successfully!")
+
+cur.executescript("""
+  CREATE TRIGGER update_current_timestamp AFTER UPDATE ON applications
+                  BEGIN
+                    UPDATE applications SET update_at = CURRENT_TIMESTAMP;
+                  END;
+""")
+print("Trigger created successfully!")
 
 cur.execute(
 """
